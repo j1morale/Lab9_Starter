@@ -69,25 +69,26 @@
     </form>
 
     <section id="error-btns">
-      <button>Console Log</button>
-      <button>Console Error</button>
-      <button>Console Count</button>
-      <button>Console Warn</button>
-      <button>Console Assert</button>
-      <button>Console Clear</button>
-      <button>Console Dir</button>
-      <button>Console dirxml</button>
-      <button>Console Group Start</button>
-      <button>Console Group End</button>
-      <button>Console Table</button>
-      <button>Start Timer</button>
-      <button>End Timer</button>
-      <button>Console Trace</button>
-      <button>Trigger a Global Error</button>
+      <button id='consoleLog'>Console Log</button>
+      <button id='consoleError'>Console Error</button>
+      <button id='consoleCount'>Console Count</button>
+      <button id='consoleWarn'>Console Warn</button>
+      <button id='consoleAssert'>Console Assert</button>
+      <button id='consoleClear'>Console Clear</button>
+      <button id='consoleDir'>Console Dir</button>
+      <button id='consoleDirxml'>Console dirxml</button>
+      <button id='consoleGroupStart'>Console Group Start</button>
+      <button id='consoleGroupEnd'>Console Group End</button>
+      <button id='consoleTable'>Console Table</button>
+      <button id='startTimer'>Start Timer</button>
+      <button id='endTimer'>End Timer</button>
+      <button id='consoleTrace'>Console Trace</button>
+      <button id='triggerAGlobalError'>Trigger a Global Error</button>
     </section>
   </main>
 
   <script>
+
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -100,8 +101,109 @@
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
-    // Start your code here
-    // You may move this JS to another file if you wish
+    // Error Buttons
+
+    // console Log
+    var consoleLogButton = document.getElementById('consoleLog');
+    consoleLogButton.addEventListener('click', function(event){
+      console.log('Console Log Demo');
+    });
+    
+    // console Error
+    var consoleErrorButton = document.getElementById('consoleError');
+    consoleErrorButton.addEventListener('click', function(event){
+      console.error('Error!');
+    });
+
+    //console count
+    var consoleCountButton = document.getElementById('consoleCount');
+    consoleCountButton.addEventListener('click', function(event){
+      console.count();
+    });
+
+    //warn 
+    var consoleWarnButton = document.getElementById('consoleWarn');
+    consoleWarnButton.addEventListener('click', function(event){
+      console.warn('Warning!');
+    });
+    
+    //assert 
+    var consoleAssertButton = document.getElementById('consoleAssert');
+    consoleAssertButton.addEventListener('click', function(event){
+      console.assert(false,'You shall not pass!');
+    });
+
+    //clear 
+    var consoleClearButton = document.getElementById('consoleClear');
+    consoleClearButton.addEventListener('click', function(event){
+      console.clear();
+    });
+
+    //dir 
+    var consoleDirButton = document.getElementById('consoleDir');
+    consoleDirButton.addEventListener('click', function(event){
+      console.dir(document.getElementById('consoleDir'));
+    });
+
+    //dirxml 
+    var consoleDirXMLButton = document.getElementById('consoleDirxml');
+    consoleDirXMLButton.addEventListener('click', function(event){
+      console.dir(document.getElementById('consoleDirxml'));
+    });
+
+    //group start 
+    var consoleGroupStartButton = document.getElementById('consoleGroupStart');
+    consoleGroupStartButton.addEventListener('click', function(event){
+      console.group();
+    });
+
+    //group end  
+    var consoleGroupEndButton = document.getElementById('consoleGroupEnd');
+    consoleGroupEndButton.addEventListener('click', function(event){
+      console.groupEnd();
+    });
+
+    //table
+    var consoleTableButton = document.getElementById('consoleTable');
+    consoleTableButton.addEventListener('click', function(event){
+      console.table(["passionfruit", "pitaya", "guava", "mango"]);
+    });
+
+    //start timer 
+    var startTimerButton = document.getElementById('startTimer');
+    startTimerButton.addEventListener('click', function(event){
+      console.time();
+    });
+
+    //end timer 
+    var endTimerButton = document.getElementById('endTimer');
+    endTimerButton.addEventListener('click', function(event){
+      console.timeEnd();
+    });
+
+    //console trace 
+    var traceButton = document.getElementById('consoleTrace');
+    traceButton.addEventListener('click', function(event){
+      function foo() {
+        function bar() {
+          console.trace();
+        }
+        bar();
+      }
+
+      foo();
+    });
+
+    //trigger a global error
+    var globalErrorButton = document.getElementById('triggerAGlobalError');
+    globalErrorButton.addEventListener('click', function(event){
+      window.onerror = function(message, source, lineno, colno, error) { console.log("Message: " + message + 
+        " Source: " + source + " Line #: " + lineno + " Column #: " + colno + " Error #: " + error) };
+    });
+
+    window.onerror = function(message, source, lineno, colno, error) { console.log("Message: " + message + 
+        " Source: " + source + " Line #: " + lineno + " Column #: " + colno + " Error #: " + error) };
+
   </script>
 </body>
 
