@@ -87,7 +87,15 @@
     </section>
   </main>
 
-                        
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "f4cb095800704127a6b4068c53ec92b6"
+      // for more configuration options, see https://docs.trackjs.com
+
+    });
+  </script>
+                                               
   <script>
 
     class notAcceptedFirstNum extends Error {
@@ -105,15 +113,16 @@
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
       try {
-        
-        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+        let checkFirst = eval(`${firstNum} + 1`);
       } catch (err) {
         throw new notAcceptedFirstNum(firstNum + " is not an accepted value!");
 
       } finally {
           let firstNumMatch = firstNum.match(/(\d+)/);
           let secondNumMatch = secondNum.match(/(\d+)/);
-
+          firstNum = firstNumMatch[0];
+          secondNum = secondNumMatch[0];
+          output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
           //console.log('Did you mean ' + firstNumMatch[0] + operator + secondNumMatch[0] + '?');
 
       }
