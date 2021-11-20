@@ -90,6 +90,13 @@
                         
   <script>
 
+    class notAcceptedFirstNum extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "Not Accepted First Number";
+      }
+    }
+
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -97,7 +104,19 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      try {
+        
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      } catch (err) {
+        throw new notAcceptedFirstNum(firstNum + " is not an accepted value!");
+
+      } finally {
+          let firstNumMatch = firstNum.match(/(\d+)/);
+          let secondNumMatch = secondNum.match(/(\d+)/);
+
+          //console.log('Did you mean ' + firstNumMatch[0] + operator + secondNumMatch[0] + '?');
+
+      }
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
