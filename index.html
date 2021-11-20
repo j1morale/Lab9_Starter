@@ -87,6 +87,7 @@
     </section>
   </main>
 
+                        
   <script>
 
     let form = document.querySelector('form');
@@ -196,9 +197,8 @@
 
     //trigger a global error
     var globalErrorButton = document.getElementById('triggerAGlobalError');
-    globalErrorButton.addEventListener('click', function(event){
-      window.onerror = function(message, source, lineno, colno, error) { console.log("Message: " + message + 
-        " Source: " + source + " Line #: " + lineno + " Column #: " + colno + " Error #: " + error) };
+    globalErrorButton.addEventListener('click', function(event){ 
+        throw new Error("Trigger a Global Error!");
     });
 
     window.onerror = function(message, source, lineno, colno, error) { console.log("Message: " + message + 
